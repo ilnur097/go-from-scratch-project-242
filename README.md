@@ -1,2 +1,7 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/ilnur097/go-from-scratch-project-242/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ilnur097/go-from-scratch-project-242/actions)
+# Hexlet Path Size
+
+Утилита для определения размера файлов и директорий.
+
+## Установка
+```bash
+go build -o bin/hexlet-path-size cmd/hexlet-path-size/main.go
