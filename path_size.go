@@ -39,11 +39,9 @@ size, err := GetSize(path)
 if err != nil {
 return "", err
 }
-if human {
-return fmt.Sprintf("%s\t%s", FormatSize(size, true), path), nil
+return fmt.Sprintf("%s\t%s", FormatSize(size, human), path), nil
 }
-return fmt.Sprintf("%d\t%s", size, path), nil
-}
+
 
 func FormatSize(size int64, human bool) string {
 
