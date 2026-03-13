@@ -1,20 +1,52 @@
 package main
+
 import (
-"fmt"
-"os"
-"code"
+	"context"
+	"fmt"
+	"log"
+	"os"
+	"code/code"
+        "github.com/urfave/cli/v3"
 )
 
 func main() {
-if len(os.Args) < 2 {
-return
-}
+	
+	cmd := &cli.Command{
+		Name:  "hexlet-path-size",
+		Usage: "calculate path size",
+		Flags: []cli.Flag{
+			&cli.BoolFlag{
+				Name:    "human",
+				Aliases: []string{"H"},
+				Usage:   "human-readable sizes (auto-select unit)",
+			},
+			&cli.BoolFlag{
+				Name:    "all",
+				Aliases: []string{"a"},
+				Usage:   "include hidden files and directories",
+			},
+		},
+		Action: func(ctx context.Context, c *cli.Command) error {
+			if c.Args().Len() < 1 {
+				return nil
+			}
 
-path := os.Args[1]
-result, err := code.GetPathSize(path, false, false, false)
-if err != nil {
-fmt.Fprintf(os.Stderr, "error: %v\n", err)
-os.Exit(1)
-}
-fmt.Println(result)
+			path := c.Args().First()
+			human := c.Bool("human")
+			all := c.Bool("all"
+
+			result, err := code.GetPathSize(path, false, human, all)
+			if err != nil {
+				return err
+			}
+
+			fmt.Println(result)
+			return nil
+		},
+	}
+
+	
+	if err := cmd.Run(context.Background(), os.Args); err != nil {
+		log.Fatal(err)
+	}
 }
