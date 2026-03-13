@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"code/code"
+	"code/go-from-scratch-project-242"
         "github.com/urfave/cli/v3"
 )
 
