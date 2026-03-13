@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"hexlet-path-size/code"
+	"code"
         "github.com/urfave/cli/v3"
 )
 
