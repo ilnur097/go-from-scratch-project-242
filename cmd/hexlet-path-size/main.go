@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"code/go-from-scratch-project-242"
+	"hexlet-path-size/code"
         "github.com/urfave/cli/v3"
 )
 
