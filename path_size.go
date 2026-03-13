@@ -4,9 +4,10 @@ import (
 "fmt"
 "os"
 "strings"
+"path/filepath"
 )
 
-func GetSize(path string, all bool) (int64, error) {
+func GetSize(path string,recursive, all bool) (int64, error) {
 
 info, err := os.Lstat(path)
 if err !=nil {
@@ -26,10 +27,16 @@ name := entry.Name()
 if !all && strings.HasPrefix(name, ".") {
 continue
 }
+fullPath := filepath.Join(path, name)
 if entry.IsDir() {
-continue
+if recursive {
+size, err := GetSize(fullPath, recursive, all)
+if err != nil {
+return 0, err
 }
-
+totalSize += size
+}
+}
 fileInfo, err := entry.Info()
 if err != nil {
 return 0, err
@@ -40,7 +47,7 @@ return totalSize, nil
 }
 
 func GetPathSize(path string, recursive, human, all bool) (string, error) {
-size, err := GetSize(path, all)
+size, err := GetSize(path,recursive, all)
 if err != nil {
 return "", err
 }
